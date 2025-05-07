@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Clientes</title>
+  <link rel="stylesheet" href="cliente.css">
+</head>
+<body class="collapsed">
+<!--Seccion del Menu -->
+  <div class="sidebar-toggle expanded" id="sidebar-toggle">
+    <div class="logo">
+      <img src="../Imagenes/cubo.png" alt="BoxControl Logo" class="logo-icon" title="BoxControl">
+      <span class="logo-text">BoxControl</span>
+    </div>
+  
+    <button id="menu-toggle">
+      <img src="../Imagenes/menu.png" alt="menu">
+    </button>
+    
+    <div class="sidebar" id="sidebar">
+      <button class="icon-btn" title="Inicio">
+        <img src="../Imagenes/hogar.png" alt="home"><span class="menu-text">Inicio</span></
+      </button>
+      <button class="icon-btn" title="Órdenes">
+        <img src="../Imagenes/bloc.png" alt="bloc"><span class="menu-text">Órdenes</span>
+      </button>
+      <button class="icon-btn" title="Repuestos">
+        <img src="../Imagenes/Repuestos.png" alt="Repuesto"><span class="menu-text">Repuestos</span>
+      </button>
+      <button class="icon-btn" title="Clientes" >
+        <a href="#" class="icon-btn active">
+        <img src="../Imagenes/cliente.png" alt="cliente"><span class="menu-text">Clientes</span>
+        </a>
+      </button>
+      <button class="icon-btn" title="Historial">
+        <img src="../Imagenes/historial.png" alt="historial"><span class="menu-text">Historial</span>
+      </button>
+      <button class="icon-btn" title="Vehiculo">
+        <img src="../Imagenes/auto.png" alt="auto"><span class="menu-text">Vehículo</span>
+      </button>
+    </div>
+ </div>
+
+  <div class="main">
+    <header>
+      <div class="top-right">
+        <button class="icon-btnm" title="Notificaciones">
+          <img src="../Imagenes/notificaciones.png" alt="Notificaciones">
+        </button>
+        <button class="icon-btnm" title="Configuración">
+          <img src="../Imagenes/configurar.png" alt="Configuración">
+        </button>
+          
+        <div class="user-menu">
+          <div class="user-summary">
+            <img src="../Imagenes/gente.png" alt="gente" class="user-icon">
+            <img src="../Imagenes/flecha.png" alt="flecha" class="arrow-icon">
+          </div>
+            
+          <div class="dropdown">
+            <div class="profile-header">
+              <img src="../Imagenes/gente.png" alt="Perfil" class="profile-icon">
+              <div class="profile-info">
+                <span class="user-name">Marco</span>
+                <a href="#" class="profile-link">Ver Perfil</a>
+              </div>
+            </div>
+            <hr />
+            <p>Últimas Actualizaciones</p>
+            <p>Ayuda</p>
+            <p>Enviar Comentarios</p>
+            <p>Política de Privacidad</p>
+            <hr />
+            <p>Cerrar Sesión</p>
+          </div>          
+        </div>
+      </div>
+    </header>
+<!--Seccion del Cliente-->
+    <div class="content">
+      <div class="panel">
+        <h2>Clientes</h2>
+        <div class="client-actions">
+          <div class="search-container">
+            <input type="text" id="search-input" placeholder="Buscar por nombre o apellido...">
+            <button id="search-btn">Buscar</button>
+          </div>
+          <button id="add-client-btn" class="add-btn">Nuevo Cliente</button>
+        </div>
+        
+        <div class="table-container">
+          <table id="clients-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Cédula/Ruc</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+                <th>Dirección</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Por el momento se añade en Java -->
+            </tbody>
+          </table>
+          <div id="no-results" class="no-results" style="display: none;">
+            No se encuentra ningún resultado
+          </div>
+          <div id="recent-searches" class="recent-searches">
+            <h3>Búsquedas recientes</h3>
+            <div class="search-tags"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Añadir/editar clientes  -->
+    <div id="client-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2 id="modal-title">Nuevo Cliente</h2>
+        <form id="client-form" >
+          <input type="hidden" id="client-id">
+          <div class="form-group">
+            <label for="nombre" style="margin-top: 1rem;">Nombre:</label>
+            <input type="text" id="nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="cedula">Cédula/ID:</label>
+            <input type="text" id="cedula" required>
+          </div>
+          <div class="form-group">
+            <label for="telefono">Teléfono:</label>
+            <input type="text" id="telefono" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+          </div>
+          <div class="form-group">
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" required>
+          </div>
+          <button type="submit" class="submit-btn">Guardar</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Advertencia de eliminar -->
+    <div id="confirm-modal" class="modal">
+      <div class="modal-content confirm-modal">
+        <h2>¿Está seguro?</h2>
+        <p>¿Desea eliminar este cliente?</p>
+        <div class="confirm-buttons">
+          <button id="confirm-yes" class="confirm-btn">Sí</button>
+          <button id="confirm-no" class="confirm-btn">No</button>
+        </div>
+      </div>
+   </div>
+  </div>
+ <script src="cliente.js"></script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Vehiculos</title>
+  <link rel="stylesheet" href="carro.css">
+</head>
+<body class="collapsed">
+<!--Seccion del Menu -->
+  <div class="sidebar-toggle expanded" id="sidebar-toggle">
+    <div class="logo">
+      <img src="../Imagenes/cubo.png" alt="BoxControl Logo" class="logo-icon" title="BoxControl">
+      <span class="logo-text">BoxControl</span>
+    </div>
+  
+    <button id="menu-toggle">
+      <img src="../Imagenes/menu.png" alt="menu">
+    </button>
+    
+    <div class="sidebar" id="sidebar">
+      <button class="icon-btn" title="Inicio">
+        <img src="../Imagenes/hogar.png" alt="home"><span class="menu-text">Inicio</span>
+      </button>
+      <button class="icon-btn" title="Órdenes">
+        <img src="../Imagenes/bloc.png" alt="bloc"><span class="menu-text">Órdenes</span>
+      </button>
+      <button class="icon-btn" title="Repuestos">
+        <img src="../Imagenes/Repuestos.png" alt="Repuesto"><span class="menu-text">Repuestos</span>
+      </button>
+      <button class="icon-btn" title="Clientes" >
+        <img src="../Imagenes/cliente.png" alt="cliente"><span class="menu-text">Clientes</span>
+      </button>
+      <button class="icon-btn" title="Historial">
+        <img src="../Imagenes/historial.png" alt="historial"><span class="menu-text">Historial</span>
+      </button>
+      <button class="icon-btn" title="Vehiculo">
+        <a href="#" class="icon-btn active">
+        <img src="../Imagenes/auto.png" alt="auto"><span class="menu-text">Vehículo</span></a>
+      </button>
+    </div>
+ </div>
+
+  <div class="main">
+    <header>
+      <div class="top-right">
+        <button class="icon-btnm" title="Notificaciones">
+          <img src="../Imagenes/notificaciones.png" alt="Notificaciones">
+        </button>
+        <button class="icon-btnm" title="Configuración">
+          <img src="../Imagenes/configurar.png" alt="Configuración">
+        </button>
+          
+        <div class="user-menu">
+          <div class="user-summary">
+            <img src="../Imagenes/gente.png" alt="gente" class="user-icon">
+            <img src="../Imagenes/flecha.png" alt="flecha" class="arrow-icon">
+          </div>
+            
+          <div class="dropdown">
+            <div class="profile-header">
+              <img src="../Imagenes/gente.png" alt="Perfil" class="profile-icon">
+              <div class="profile-info">
+                <span class="user-name">Marco</span>
+                <a href="#" class="profile-link">Ver Perfil</a>
+              </div>
+            </div>
+            <hr />
+            <p>Últimas Actualizaciones</p>
+            <p>Ayuda</p>
+            <p>Enviar Comentarios</p>
+            <p>Política de Privacidad</p>
+            <hr />
+            <p>Cerrar Sesión</p>
+          </div>          
+        </div>
+      </div>
+    </header>
+<!--Seccion del Vehiculo-->
+    <div class="content">
+      <div class="panel">
+        <h2>Vehiculos</h2>
+        <div class="vehiculo-actions">
+          <div class="search-container">
+            <input type="text" id="search-input" placeholder="Buscar por placa, marca o cliente">
+            <button id="search-btn">Buscar</button>
+          </div>
+          <button id="add-vehiculo-btn" class="add-btn">Nuevo Vehiculo</button>
+        </div>
+        
+        <div class="table-container">
+          <table id="vehiculos-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Marca</th>
+                <th>Placa</th>
+                <th>Color</th>
+                <th>Modelo</th>
+                <th>Año</th>
+                <th>Dueño</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Por el momento se añade en Java -->
+            </tbody>
+          </table>
+          <div id="no-results" class="no-results" style="display: none;">
+            No se encuentra ningún resultado
+          </div>
+          <div id="recent-searches" class="recent-searches">
+            <h3>Búsquedas recientes</h3>
+            <div class="search-tags"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Añadir/editar Vehiculo  -->
+    <div id="vehiculo-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2 id="modal-title">Nuevo Vehiculo</h2>
+        <form id="vehiculo-form" >
+          <input type="hidden" id="vehiculo-id">
+          <div class="form-group">
+            <label for="marca" style="margin-top: 1rem;">Marca</label>
+            <input type="text" id="marca" required>
+          </div>
+          <div class="form-group">
+            <label for="placa">Placa</label>
+            <input type="text" id="placa" required>
+          </div>
+          <div class="form-group">
+            <label for="color">Color</label>
+            <input type="text" id="color" required>
+          </div>
+          <div class="form-group">
+            <label for="modelo">Modelo</label>
+            <input type="text" id="modelo" required>
+          </div>
+          <div class="form-group">
+            <label for="año">Año</label>
+            <input type="number" id="año" required>
+          </div>
+          <div>
+            <label for="dueño">Dueño</label>
+            <input type="text" id="dueño" required>
+          </div>
+          <button type="submit" class="submit-btn">Guardar</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Advertencia de eliminar -->
+    <div id="confirm-modal" class="modal">
+      <div class="modal-content confirm-modal">
+        <h2>¿Está seguro?</h2>
+        <p>¿Desea eliminar este cliente?</p>
+        <div class="confirm-buttons">
+          <button id="confirm-yes" class="confirm-btn">Sí</button>
+          <button id="confirm-no" class="confirm-btn">No</button>
+        </div>
+      </div>
+   </div>
+  </div>
+ <script src="carro.js"></script>
+</body>
+</html>

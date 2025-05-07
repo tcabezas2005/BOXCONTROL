@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Vehiculos</title>
+  <link rel="stylesheet" href="e.css">
+</head>
+<body class="collapsed">
+<!--Seccion del Menu -->
+  <div class="sidebar-toggle expanded" id="sidebar-toggle">
+    <div class="logo">
+      <img src="../Imagenes/cubo.png" alt="BoxControl Logo" class="logo-icon" title="BoxControl">
+      <span class="logo-text">BoxControl</span>
+    </div>
+  
+    <button id="menu-toggle">
+      <img src="../Imagenes/menu.png" alt="menu">
+    </button>
+    
+    <div class="sidebar" id="sidebar">
+      <button class="icon-btn" title="Inicio">
+        <img src="../Imagenes/hogar.png" alt="home"><span class="menu-text">Inicio</span>
+      </button>
+      <button class="icon-btn" title="Órdenes">
+        <img src="../Imagenes/bloc.png" alt="bloc"><span class="menu-text">Órdenes</span>
+      </button>
+      <button class="icon-btn" title="Repuestos">
+        <a href="#" class="icon-btn active">
+        <img src="../Imagenes/Repuestos.png" alt="Repuesto"><span class="menu-text">Repuestos</span>
+        </a>
+      </button>
+      <button class="icon-btn" title="Clientes" >
+        <img src="../Imagenes/cliente.png" alt="cliente"><span class="menu-text">Clientes</span>
+      </button>
+      <button class="icon-btn" title="Historial">
+        <img src="../Imagenes/historial.png" alt="historial"><span class="menu-text">Historial</span>
+      </button>
+      <button class="icon-btn" title="Vehiculo">
+        <img src="../Imagenes/auto.png" alt="auto"><span class="menu-text">Vehículo</span>
+      </button>
+    </div>
+ </div>
+
+  <div class="main">
+    <header>
+      <div class="top-right">
+        <button class="icon-btnm" title="Notificaciones">
+          <img src="../Imagenes/notificaciones.png" alt="Notificaciones">
+        </button>
+        <button class="icon-btnm" title="Configuración">
+          <img src="../Imagenes/configurar.png" alt="Configuración">
+        </button>
+          
+        <div class="user-menu">
+          <div class="user-summary">
+            <img src="../Imagenes/gente.png" alt="gente" class="user-icon">
+            <img src="../Imagenes/flecha.png" alt="flecha" class="arrow-icon">
+          </div>
+            
+          <div class="dropdown">
+            <div class="profile-header">
+              <img src="../Imagenes/gente.png" alt="Perfil" class="profile-icon">
+              <div class="profile-info">
+                <span class="user-name">Marco</span>
+                <a href="#" class="profile-link">Ver Perfil</a>
+              </div>
+            </div>
+            <hr />
+            <p>Últimas Actualizaciones</p>
+            <p>Ayuda</p>
+            <p>Enviar Comentarios</p>
+            <p>Política de Privacidad</p>
+            <hr />
+            <p>Cerrar Sesión</p>
+          </div>          
+        </div>
+      </div>
+    </header>
+<!--Seccion de Repuestos-->
+    <div class="content">
+      <div class="panel">
+        <h2>Repuestos</h2>
+        <div class="repuesto-actions">
+          <div class="search-container">
+            <input type="text" id="search-input" placeholder="Buscar por tipo o SKU">
+            <button id="search-btn">Buscar</button>
+          </div>
+          
+          <div class="category-container">
+            <select id="categoria" required>
+              <option value="">Seleccione una categoría...</option>
+              <option value="frenos-y-suspension">Frenos y Suspensión</option>
+              <option value="motor">Motor</option>
+              <option value="sistema-electrico">Sistema Eléctrico</option>
+            </select>
+            <button id="add-repuesto-btn" class="add-btn">Nuevo Repuesto</button>
+          </div>
+        </div>
+        
+        <div class="table-container">
+          <table id="repuestos-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Categoria</th>
+                <th>Stock</th>
+                <th>Precio</th>
+                <th>Compatibilidad</th>
+                <th>Tipo</th>
+                <th>SKU</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Por el momento se añade en Java -->
+            </tbody>
+          </table>
+          <div id="no-results" class="no-results" style="display: none;">
+            No se encuentra ningún resultado
+          </div>
+          <div id="recent-searches" class="recent-searches">
+            <h3>Búsquedas recientes</h3>
+            <div class="search-tags"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Añadir/editar Repuesto  -->
+    <div id="repuestos-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2 id="modal-title">Nuevo Repuesto</h2>
+        <form id="repuesto-form" >
+          <input type="hidden" id="repuesto-id">
+          <div class="form-group">
+            <label for="nombre" style="margin-top: 1rem;">Nombre</label>
+            <input type="text" id="nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="categoria">Categoría</label>
+            <select id="categoria" required>
+              <option value="">Seleccione una categoría...</option>
+              <option value="frenos-y-suspension">Frenos y Suspensión</option>
+              <option value="motor">Motor</option>
+              <option value="sistema-electrico">Sistema Eléctrico</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="stock">Stock</label>
+            <input type="text" id="stock" required>
+          </div>
+          <div class="form-group">
+            <label for="precio">Precio</label>
+            <input type="text" id="precio" required>
+          </div>
+          <div class="form-group">
+            <label for="compatibilidad">Compatibilidad</label>
+            <input type="text" id="compatibilidad" required>
+          </div>
+          <div>
+            <label for="tipo">Tipo</label>
+            <input type="text" id="tipo" required>
+          </div>
+          <div>
+            <label for="SKU">SKU</label>
+            <input type="text" id="SKU" required>
+          </div>
+          <button type="submit" class="submit-btn">Guardar</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Advertencia de eliminar -->
+    <div id="confirm-modal" class="modal">
+      <div class="modal-content confirm-modal">
+        <h2>¿Está seguro?</h2>
+        <p>¿Desea eliminar este cliente?</p>
+        <div class="confirm-buttons">
+          <button id="confirm-yes" class="confirm-btn">Sí</button>
+          <button id="confirm-no" class="confirm-btn">No</button>
+        </div>
+      </div>
+   </div>
+  </div>
+ <script src="res.js"></script>
+</body>
+</html>
