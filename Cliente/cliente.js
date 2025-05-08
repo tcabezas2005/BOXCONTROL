@@ -1,4 +1,4 @@
-//Menu 
+// Menú lateral
 const menuToggle = document.getElementById('menu-toggle');
 const sidebarToggle = document.getElementById('sidebar-toggle');
 
@@ -15,339 +15,326 @@ document.getElementById('menu-toggle').addEventListener('click', function () {
   document.body.classList.toggle('collapsed');
 });
 
+// Cliente - Variables globales
+let recentSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
+let deleteClientId = null;
 
-//Cliente
-let clients = [
-  { id: "C00001", nombre: "Juan Pérez", cedula: "0123456789", telefono: "0991234567", email: "juanp@gmail.com", direccion: "Av.Rumiflahui" },
-  { id: "C00002", nombre: "Carla Rodríguez", cedula: "0987654321", telefono: "0987654321", email: "carla_r@gmail.com", direccion: "Av.Simon Bolivar" },
-  { id: "C00003", nombre: "Marco Vinueza", cedula: "0159753248", telefono: "0975312486", email: "marco12@hotmail.com", direccion: "Av.6 de Diciembre" }
-];
-  
-  let currentClientId = null;
-  let deleteClientId = null;
-  
-  // DOM Elements
-  const clientsTable = document.getElementById('clients-table').getElementsByTagName('tbody')[0];
-  const searchInput = document.getElementById('search-input');
-  const searchBtn = document.getElementById('search-btn');
-  const addClientBtn = document.getElementById('add-client-btn');
-  const clientModal = document.getElementById('client-modal');
-  const confirmModal = document.getElementById('confirm-modal');
-  const closeBtn = document.querySelector('.close-btn');
-  const clientForm = document.getElementById('client-form');
-  const modalTitle = document.getElementById('modal-title');
-  const confirmYes = document.getElementById('confirm-yes');
-  const confirmNo = document.getElementById('confirm-no');
-  
-  // Event Listeners
-  searchBtn.addEventListener('click', searchClients);
-  searchInput.addEventListener('keyup', function(e) {
-    if (e.key === 'Enter') {
-      searchClients();
-    }
+// Elementos del DOM
+const clientsTable = document.getElementById('clients-table').getElementsByTagName('tbody')[0];
+const searchInput = document.getElementById('search-input');
+const searchBtn = document.getElementById('search-btn');
+const addClientBtn = document.getElementById('add-client-btn');
+const clientModal = document.getElementById('client-modal');
+const confirmModal = document.getElementById('confirm-modal');
+const closeBtn = document.querySelector('.close-btn');
+const clientForm = document.getElementById('client-form');
+const modalTitle = document.getElementById('modal-title');
+const confirmYes = document.getElementById('confirm-yes');
+const confirmNo = document.getElementById('confirm-no');
+const noResultsElement = document.getElementById('no-results');
+const recentSearchesElement = document.querySelector('.recent-searches .search-tags');
+
+// URL base del API
+const API_URL = 'http://localhost:3000/api/users'; // Cambia esto si tu API está en otro puerto o dominio
+
+// Funciones de conexión al API
+async function fetchClients() {
+  const res = await fetch(API_URL);
+  if (!res.ok) throw new Error('Error al cargar los clientes');
+  return await res.json();
+}
+
+async function searchClientsAPI(term) {
+  const res = await fetch(`${API_URL}?search=${encodeURIComponent(term)}`);
+  if (!res.ok) throw new Error('Error al buscar clientes');
+  return await res.json();
+}
+
+async function getClientById(id) {
+  const res = await fetch(`${API_URL}/${id}`);
+  if (!res.ok) throw new Error('Cliente no encontrado');
+  return await res.json();
+}
+
+async function createClient(client) {
+  const res = await fetch(API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(client)
   });
-  addClientBtn.addEventListener('click', openAddClientModal);
-  closeBtn.addEventListener('click', closeModal);
-  clientForm.addEventListener('submit', saveClient);
-  confirmYes.addEventListener('click', confirmDelete);
-  confirmNo.addEventListener('click', closeConfirmModal);
-  
-  // Close modals when clicking outside
-  window.addEventListener('click', function(event) {
-    if (event.target === clientModal) {
-      closeModal();
-    }
-    if (event.target === confirmModal) {
-      closeConfirmModal();
-    }
+  if (!res.ok) throw new Error('Error al crear cliente');
+  return await res.json();
+}
+
+async function updateClient(id, client) {
+  const res = await fetch(`${API_URL}/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(client)
   });
-  
-  // Functions
-  function loadClients(clientsToLoad = clients) {
-    clientsTable.innerHTML = '';
-    
-    if (clientsToLoad.length === 0) {
+  if (!res.ok) throw new Error('Error al actualizar cliente');
+  return await res.json();
+}
+
+async function deleteClient(id) {
+  const res = await fetch(`${API_URL}/${id}`, {
+    method: 'DELETE'
+  });
+  if (!res.ok) throw new Error('Error al eliminar cliente');
+}
+
+// Cargar clientes desde el API
+async function loadClients(clientsToLoad = []) {
+  clientsTable.innerHTML = '';
+  try {
+    const data = clientsToLoad.length ? clientsToLoad : await fetchClients();
+
+    if (data.length === 0) {
       noResultsElement.style.display = 'block';
       return;
     }
-    
+
     noResultsElement.style.display = 'none';
-    
-    clientsToLoad.forEach(client => {
+
+    data.forEach(client => {
       const row = clientsTable.insertRow();
-      
       row.innerHTML = `
-        <td>${client.id}</td>
+        <td>${client.ID}</td>
         <td>${client.nombre}</td>
         <td>${client.cedula}</td>
         <td>${client.telefono}</td>
         <td>${client.email}</td>
         <td>${client.direccion}</td>
         <td>
-          <button class="action-btn view-btn" data-id="${client.id}">Ver</button>
-          <button class="action-btn edit-btn" data-id="${client.id}">Editar</button>
-          <button class="action-btn delete-btn" data-id="${client.id}">Eliminar</button>
+          <button class="action-btn view-btn" data-id="${client.ID}">Ver</button>
+          <button class="action-btn edit-btn" data-id="${client.ID}">Editar</button>
+          <button class="action-btn delete-btn" data-id="${client.ID}">Eliminar</button>
         </td>
       `;
-      
-      // Asignar event listeners inmediatamente después de crear los botones
-      row.querySelector('.view-btn').addEventListener('click', () => viewClient(client.id));
-      row.querySelector('.edit-btn').addEventListener('click', () => editClient(client.id));
-      row.querySelector('.delete-btn').addEventListener('click', () => deleteClient(client.id));
+      row.querySelector('.view-btn').addEventListener('click', () => viewClient(client.ID));
+      row.querySelector('.edit-btn').addEventListener('click', () => editClient(client.ID));
+      row.querySelector('.delete-btn').addEventListener('click', () => deleteClientUI(client.ID));
     });
+  } catch (error) {
+    alert(error.message);
   }
-  
-  function searchClients() {
-    const searchTerm = searchInput.value.toLowerCase();
-    
-    if (searchTerm === '') {
-      loadClients();
-      return;
-    }
-    
-    const filteredClients = clients.filter(client => 
-      client.nombre.toLowerCase().includes(searchTerm)
-    );
-    
-    loadClients(filteredClients);
-  }
-  
-  function openAddClientModal() {
-    currentClientId = null;
-    modalTitle.textContent = 'Nuevo Cliente';
-    clientForm.reset();
-    document.getElementById('client-id').value = '';
-    clientModal.style.display = 'block';
-  }
-  
-  function viewClient(id) {
-    const client = clients.find(c => c.id === id);
-    if (client) {
-      modalTitle.textContent = 'Ver Cliente';
-      
-      // Mostrar el ID de manera destacada
-      const idDisplay = document.createElement('div');
-      idDisplay.className = 'id-display';
-      idDisplay.textContent = `ID: ${client.id}`;
-      
-      // Limpiar y preparar el formulario
-      const form = document.getElementById('client-form');
-      form.innerHTML = '';
-      form.appendChild(idDisplay);
-      
-      // Crear campos no editables
-      const fields = ['nombre', 'cedula', 'telefono', 'email', 'direccion'];
-      fields.forEach(field => {
-        const div = document.createElement('div');
-        div.className = 'form-group';
-        
-        const label = document.createElement('label');
-        label.textContent = `${field.charAt(0).toUpperCase() + field.slice(1)}:`;
-        
-        const input = document.createElement('input');
-        input.type = field === 'email' ? 'email' : 'text';
-        input.id = field;
-        input.value = client[field];
-        input.disabled = true;
-        
-        div.appendChild(label);
-        div.appendChild(input);
-        form.appendChild(div);
-      });
-      
-      clientModal.style.display = 'block';
-    }
-  }
-  
-  function editClient(id) {
-    const client = clients.find(c => c.id === id);
-    if (client) {
-      modalTitle.textContent = 'Editar Cliente';
-      
-      // Mostrar el ID de manera destacada
-      const idDisplay = document.createElement('div');
-      idDisplay.className = 'id-display';
-      idDisplay.textContent = `ID: ${client.id}`;
-      
-      // Limpiar y preparar el formulario
-      const form = document.getElementById('client-form');
-      form.innerHTML = '';
-      form.appendChild(idDisplay);
-      
-      // Añadir campo oculto para el ID
-      const hiddenId = document.createElement('input');
-      hiddenId.type = 'hidden';
-      hiddenId.id = 'client-id';
-      hiddenId.value = client.id;
-      form.appendChild(hiddenId);
-      
-      // Crear campos editables
-      const fields = ['nombre', 'cedula', 'telefono', 'email', 'direccion'];
-      fields.forEach(field => {
-        const div = document.createElement('div');
-        div.className = 'form-group';
-        
-        const label = document.createElement('label');
-        label.textContent = `${field.charAt(0).toUpperCase() + field.slice(1)}:`;
-        
-        const input = document.createElement('input');
-        input.type = field === 'email' ? 'email' : 'text';
-        input.id = field;
-        input.value = client[field];
-        input.required = true;
-        
-        div.appendChild(label);
-        div.appendChild(input);
-        form.appendChild(div);
-      });
-      
-      // Botón de guardar
-      const submitBtn = document.createElement('button');
-      submitBtn.type = 'submit';
-      submitBtn.className = 'submit-btn';
-      submitBtn.textContent = 'Guardar';
-      form.appendChild(submitBtn);
-      
-      clientModal.style.display = 'block';
-    }
-  }
-  
-  function deleteClient(id) {
-    deleteClientId = id;
-    confirmModal.style.display = 'block';
-  }
-  
-  function confirmDelete() {
-    clients = clients.filter(client => client.id !== deleteClientId);
-    loadClients();
-    closeConfirmModal();
-  }
-  
-  function closeConfirmModal() {
-    confirmModal.style.display = 'none';
-    deleteClientId = null;
-  }
-  
-  function closeModal() {
-    clientModal.style.display = 'none';
-    
-    // Reset form and enable inputs when closing
-    const inputs = clientForm.querySelectorAll('input');
-    inputs.forEach(input => {
-      input.disabled = false;
-    });
-    
-    // Show submit button when closing
-    document.querySelector('.submit-btn').style.display = 'block';
-  }
-  
-  function generateNextId() {
-    const maxId = clients.reduce((max, client) => {
-      const num = parseInt(client.id.substring(1));
-      return num > max ? num : max;
-    }, 0);
-    
-    const nextNum = maxId + 1;
-    return 'C' + String(nextNum).padStart(5, '0');
-  }
-  
-  function saveClient(e) {
-    e.preventDefault();
-    
-    const idInput = document.getElementById('client-id');
-    const nombre = document.getElementById('nombre').value;
-    const cedula = document.getElementById('cedula').value;
-    const telefono = document.getElementById('telefono').value;
-    const email = document.getElementById('email').value;
-    const direccion = document.getElementById('direccion').value;
-    
-    if (idInput.value) {
-      // Actualizar cliente existente
-      const index = clients.findIndex(c => c.id === idInput.value);
-      if (index !== -1) {
-        clients[index] = { 
-          id: idInput.value, 
-          nombre, 
-          cedula, 
-          telefono, 
-          email, 
-          direccion 
-        };
-      }
-    } else {
-      // Añadir nuevo cliente
-      const newId = generateNextId();
-      clients.push({ 
-        id: newId, 
-        nombre, 
-        cedula, 
-        telefono, 
-        email, 
-        direccion 
-      });
-    }
-    loadClients();
-    closeModal();
-  }
-  // Añade estas variables al inicio del JS
-  let recentSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
-  const noResultsElement = document.getElementById('no-results');
-  const recentSearchesElement = document.querySelector('.recent-searches .search-tags');
+}
 
-  // Modifica la función searchClients
-  function searchClients() {
-    const searchTerm = searchInput.value.toLowerCase().trim();
-    
-    if (searchTerm === '') {
-      loadClients();
-      noResultsElement.style.display = 'none';
-      return;
-    }
-    
-    // Añadir a búsquedas recientes si no está vacío
-    if (searchTerm && !recentSearches.includes(searchTerm)) {
-      recentSearches.unshift(searchTerm);
-      if (recentSearches.length > 5) {
-        recentSearches.pop();
-      }
-      localStorage.setItem('recentSearches', JSON.stringify(recentSearches));
-      updateRecentSearches();
-    }
-    
-    const filteredClients = clients.filter(client => 
-      client.nombre.toLowerCase().includes(searchTerm)
-    );
-    
-    loadClients(filteredClients);
-    
-    // Mostrar mensaje si no hay resultados
-    if (filteredClients.length === 0) {
+function deleteClientUI(id) {
+  deleteClientId = id;
+  confirmModal.style.display = 'block';
+}
+
+async function searchClients() {
+  const searchTerm = searchInput.value.toLowerCase().trim();
+  if (searchTerm === '') {
+    loadClients();
+    return;
+  }
+
+  try {
+    const results = await searchClientsAPI(searchTerm);
+    loadClients(results);
+
+    if (results.length === 0) {
       noResultsElement.style.display = 'block';
     } else {
       noResultsElement.style.display = 'none';
     }
-  }
 
-  // Añade esta función para actualizar búsquedas recientes
-  function updateRecentSearches() {
-    recentSearchesElement.innerHTML = '';
-    
-    recentSearches.forEach(search => {
-      const tag = document.createElement('div');
-      tag.className = 'search-tag';
-      tag.textContent = search;
-      tag.addEventListener('click', () => {
-        searchInput.value = search;
-        searchClients();
-      });
-      recentSearchesElement.appendChild(tag);
+    if (searchTerm && !recentSearches.includes(searchTerm)) {
+      recentSearches.unshift(searchTerm);
+      if (recentSearches.length > 5) recentSearches.pop();
+      localStorage.setItem('recentSearches', JSON.stringify(recentSearches));
+      updateRecentSearches();
+    }
+
+  } catch (error) {
+    alert(error.message);
+  }
+}
+
+function openAddClientModal() {
+  modalTitle.textContent = 'Nuevo Cliente';
+  clientForm.innerHTML = `
+    <div class="form-group">
+      <label>Nombre:</label>
+      <input type="text" id="nombre" required />
+    </div>
+    <div class="form-group">
+      <label>Cédula:</label>
+      <input type="text" id="cedula" required />
+    </div>
+    <div class="form-group">
+      <label>Teléfono:</label>
+      <input type="text" id="telefono" required />
+    </div>
+    <div class="form-group">
+      <label>Email:</label>
+      <input type="email" id="email" required />
+    </div>
+    <div class="form-group">
+      <label>Dirección:</label>
+      <input type="text" id="direccion" required />
+    </div>
+    <button type="submit" class="submit-btn">Guardar</button>
+  `;
+  clientModal.style.display = 'block';
+}
+
+async function viewClient(id) {
+  try {
+    const client = await getClientById(id);
+    modalTitle.textContent = 'Ver Cliente';
+
+    clientForm.innerHTML = `
+      <div class="id-display">ID: ${client.ID}</div>
+      <div class="form-group">
+        <label>Nombre:</label>
+        <input type="text" value="${client.nombre}" disabled />
+      </div>
+      <div class="form-group">
+        <label>Cédula:</label>
+        <input type="text" value="${client.cedula}" disabled />
+      </div>
+      <div class="form-group">
+        <label>Teléfono:</label>
+        <input type="text" value="${client.telefono}" disabled />
+      </div>
+      <div class="form-group">
+        <label>Email:</label>
+        <input type="email" value="${client.email}" disabled />
+      </div>
+      <div class="form-group">
+        <label>Dirección:</label>
+        <input type="text" value="${client.direccion}" disabled />
+      </div>
+    `;
+
+    clientModal.style.display = 'block';
+  } catch (error) {
+    alert(error.message);
+  }
+}
+
+async function editClient(id) {
+  try {
+    const client = await getClientById(id);
+    modalTitle.textContent = 'Editar Cliente';
+
+    clientForm.innerHTML = `
+      <div class="id-display">ID: ${client.ID}</div>
+      <input type="hidden" id="client-id" value="${client.ID}" />
+      <div class="form-group">
+        <label>Nombre:</label>
+        <input type="text" id="nombre" value="${client.nombre}" required />
+      </div>
+      <div class="form-group">
+        <label>Cédula:</label>
+        <input type="text" id="cedula" value="${client.cedula}" required />
+      </div>
+      <div class="form-group">
+        <label>Teléfono:</label>
+        <input type="text" id="telefono" value="${client.telefono}" required />
+      </div>
+      <div class="form-group">
+        <label>Email:</label>
+        <input type="email" id="email" value="${client.email}" required />
+      </div>
+      <div class="form-group">
+        <label>Dirección:</label>
+        <input type="text" id="direccion" value="${client.direccion}" required />
+      </div>
+      <button type="submit" class="submit-btn">Guardar</button>
+    `;
+
+    clientModal.style.display = 'block';
+  } catch (error) {
+    alert(error.message);
+  }
+}
+
+async function saveClient(e) {
+  e.preventDefault();
+
+  const id = document.getElementById('client-id')?.value;
+  const nombre = document.getElementById('nombre').value.trim();
+  const cedula = document.getElementById('cedula').value.trim();
+  const telefono = document.getElementById('telefono').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const direccion = document.getElementById('direccion').value.trim();
+
+  const clientData = { nombre, cedula, telefono, email, direccion };
+
+  try {
+    if (id) {
+      await updateClient(id, clientData);
+    } else {
+      await createClient(clientData);
+    }
+    closeModal();
+    loadClients(); // Recargar desde el API
+  } catch (error) {
+    alert(error.message);
+  }
+}
+
+async function confirmDelete() {
+  try {
+    await deleteClient(deleteClientId);
+    closeConfirmModal();
+    loadClients(); // Recargar desde el API
+  } catch (error) {
+    alert(error.message);
+  }
+}
+
+function closeConfirmModal() {
+  confirmModal.style.display = 'none';
+  deleteClientId = null;
+}
+
+function closeModal() {
+  clientModal.style.display = 'none';
+}
+
+function updateRecentSearches() {
+  recentSearchesElement.innerHTML = '';
+  recentSearches.forEach(search => {
+    const tag = document.createElement('div');
+    tag.className = 'search-tag';
+    tag.textContent = search;
+    tag.addEventListener('click', () => {
+      searchInput.value = search;
+      searchClients();
     });
-  }
-
-  // Llama a esta función al cargar la página
-  window.addEventListener('DOMContentLoaded', () => {
-    document.body.classList.add('collapsed');
-    sidebarToggle.classList.remove('expanded');
-    loadClients();
-    updateRecentSearches();
+    recentSearchesElement.appendChild(tag);
   });
+}
+
+// Event Listeners
+searchBtn.addEventListener('click', searchClients);
+searchInput.addEventListener('keyup', e => {
+  if (e.key === 'Enter') searchClients();
+});
+addClientBtn.addEventListener('click', openAddClientModal);
+closeBtn.addEventListener('click', closeModal);
+clientForm.addEventListener('submit', saveClient);
+confirmYes.addEventListener('click', confirmDelete);
+confirmNo.addEventListener('click', closeConfirmModal);
+
+window.addEventListener('click', function (event) {
+  if (event.target === clientModal) closeModal();
+  if (event.target === confirmModal) closeConfirmModal();
+});
+
+window.addEventListener('DOMContentLoaded', async () => {
+  document.body.classList.add('collapsed');
+  sidebarToggle.classList.remove('expanded');
+  try {
+    await loadClients();
+    updateRecentSearches();
+  } catch (error) {
+    alert('No se pudieron cargar los clientes: ' + error.message);
+  }
+});
