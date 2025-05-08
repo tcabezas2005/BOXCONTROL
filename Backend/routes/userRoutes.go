@@ -2,7 +2,7 @@ package routes
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/tu-usuario/proyecto-usuarios/controllers"
+	"github.com/tcabezas2005/BOXCONTROL/Backend/controllers"
 )
 
 func SetupUserRoutes(app *fiber.App) {
