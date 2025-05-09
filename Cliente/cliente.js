@@ -35,7 +35,7 @@ const noResultsElement = document.getElementById('no-results');
 const recentSearchesElement = document.querySelector('.recent-searches .search-tags');
 
 // URL base del API
-const API_URL = 'http://localhost:3000/api/users'; // Cambia esto si tu API está en otro puerto o dominio
+const API_URL = 'http://localhost:8080/api/users'; // Cambia esto si tu API está en otro puerto o dominio
 
 // Funciones de conexión al API
 async function fetchClients() {
