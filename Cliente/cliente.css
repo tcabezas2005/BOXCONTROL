@@ -221,6 +221,22 @@
   .profile-link:hover {
     text-decoration: underline;
   }
+
+  .logout-link {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #817675ac; 
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+
+  .logout-link:hover {
+    background-color: #e06659;
+  }
+
   /*Seccion Cliente*/
   .content {
     padding: 1rem;
@@ -245,7 +261,7 @@
     border:1px solid black;
   }
 
-  /* Client Section Styles */
+  /* Contenido de la Seccion */
   .panel h2 {
     margin-bottom: 2rem;
   }
@@ -263,7 +279,7 @@
     gap: 0.5rem;
     
   }
-
+/*Busqueda*/
   #search-input {
     padding: 0.5rem;
     border-radius: 5px;
@@ -311,42 +327,6 @@
     background-color: #45a049;
   }
 
-  .table-container {
-    overflow-x: auto;
-  }
-
-  #clients-table {
-    width: 100%;
-    margin-top: 1rem;
-  }
-
-  #clients-table th:first-child,
-  #clients-table td:first-child {
-    width: 80px; 
-    font-family: monospace; 
-  }
-
-  #clients-table th, #clients-table td {
-    border: 1px solid #c2bcbcc5;
-    padding: 8px;
-    text-align: left;
-    border-radius: 10px;
-  }
-
-  #clients-table th {
-    background-color: #ece7e7;
-    position: sticky;
-    top: 0;
-  }
-
-  #clients-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-
-  #clients-table tr:hover {
-    background-color: #f1f1f1;
-  }
-
   .no-results {
     text-align: center;
     padding: 1rem;
@@ -390,6 +370,44 @@
     background-color: #d0d0d0;
   }
   
+  /* Tabla */
+  .table-container {
+    overflow-x: auto;
+  }
+
+  #clients-table {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  #clients-table th:first-child,
+  #clients-table td:first-child {
+    width: 80px; 
+    font-family: monospace; 
+  }
+
+  #clients-table th, #clients-table td {
+    border: 1px solid #c2bcbcc5;
+    padding: 8px;
+    text-align: left;
+    border-radius: 10px;
+  }
+
+  #clients-table th {
+    background-color: #ece7e7;
+    position: sticky;
+    top: 0;
+  }
+
+  #clients-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  #clients-table tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  /*Botones del CRUD*/
   .action-btn {
     padding: 5px 10px;
     margin: 0 2px;
@@ -414,7 +432,7 @@
     color: white;
   }
 
-  /* Modal Styles */
+  /* CRUD */
   .modal {
     display: none;
     position: fixed;
@@ -518,6 +536,7 @@
   #confirm-no:hover {
     background-color: #bdbdbd;
   }
+  
   .id-display {
     font-size: 1.2rem;
     font-weight: bold;

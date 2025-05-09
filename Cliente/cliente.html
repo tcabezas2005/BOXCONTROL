@@ -30,7 +30,7 @@
         <img src="../Imagenes/Repuestos.png" alt="Repuesto">
         <span class="menu-text">Repuestos</span>
       </a>
-      <a href="../Cliente/cliente.html" class="icon-btn active" title="Clientes">
+      <a href="#" class="icon-btn active" title="Clientes">
         <img src="../Imagenes/cliente.png" alt="cliente">
         <span class="menu-text">Clientes</span>
       </a>
@@ -40,7 +40,7 @@
       </a>
     </div>
  </div>
-
+<!--Ventana del Perfil -->
   <div class="main">
     <header>
       <div class="top-right">
@@ -71,7 +71,7 @@
             <p>Enviar Comentarios</p>
             <p>Política de Privacidad</p>
             <hr />
-            <p>Cerrar Sesión</p>
+            <a href="../Login/login.html" class="logout-link">Cerrar Sesión</a>
           </div>          
         </div>
       </div>
@@ -81,13 +81,14 @@
       <div class="panel">
         <h2>Clientes</h2>
         <div class="client-actions">
+          <!--Busqueda-->
           <div class="search-container">
             <input type="text" id="search-input" placeholder="Buscar por nombre o apellido...">
             <button id="search-btn">Buscar</button>
           </div>
           <button id="add-client-btn" class="add-btn">Nuevo Cliente</button>
         </div>
-        
+        <!--Tabla de Clientes-->
         <div class="table-container">
           <table id="clients-table">
             <thead>

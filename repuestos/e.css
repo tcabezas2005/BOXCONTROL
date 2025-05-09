@@ -221,7 +221,22 @@
   .profile-link:hover {
     text-decoration: underline;
   }
-  /*Seccion Vehiculo*/
+
+    .logout-link {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #817675ac; 
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+  }
+  
+  .logout-link:hover {
+    background-color: #e06659;
+  }
+   /* Seccion Respuestos */
   .content {
     padding: 1rem;
     height: 100%;
@@ -245,22 +260,25 @@
     border:1px solid black;
   }
 
-  /* Client Section Styles */
   .panel h2 {
     margin-bottom: 2rem;
   }
 
-  .vehiculo-actions {
+  .repuesto-actions {
     display: flex;
     justify-content: space-between;
     margin-bottom: 1.5rem;
     align-items: center;
     gap: 2rem;
+    flex-wrap: wrap;
   }
 
+/*Busqueda*/
   .search-container {
     display: flex;
     gap: 0.5rem;
+    flex-grow: 1;
+    max-width: 600px;
     
   }
 
@@ -311,78 +329,6 @@
     background-color: #45a049;
   }
 
-  .table-container {
-    overflow-x: auto;
-  }
-
-  #repuestos-table {
-    width: 95%;
-    margin-top: 1rem;
-  }
-
-  #repuestos-table th:first-child,
-  #repuestos-table td:first-child {
-    width: 70px; 
-    font-family: monospace; 
-  }
-
-  #repuestos-table th, #repuestos-table td {
-    border: 1px solid #c2bcbcc5;
-    padding: 8px;
-    text-align: center;
-    border-radius: 10px;
-    font-size: 0.9rem;
-
-
-  }
-
-  #repuestos-table th {
-    background-color: #ece7e7;
-    position: sticky;
-    top: 0;
-  }
-
-  #repuestos-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-
-  #repuestos-table tr:hover {
-    background-color: #f1f1f1;
-  }
-
-  /* Estilos para el contenedor de categoría y botón */
-.category-container {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  #categoria {
-    padding: 0.5rem;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 0.9rem;
-    height: 38px; 
-    min-width: 200px; 
-  }
-  
-
-  .repuesto-actions {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1.5rem;
-    align-items: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-  
-  .search-container {
-    display: flex;
-    gap: 0.5rem;
-    flex-grow: 1;
-    max-width: 600px;
-  }
-  
   .no-results {
     text-align: center;
     padding: 1rem;
@@ -426,6 +372,61 @@
     background-color: #d0d0d0;
   }
   
+/*Tabla de Ordenes*/
+  .table-container {
+    overflow-x: auto;
+  }
+
+  #repuestos-table {
+    width: 95%;
+    margin-top: 1rem;
+  }
+
+  #repuestos-table th:first-child,
+  #repuestos-table td:first-child {
+    width: 70px; 
+    font-family: monospace; 
+  }
+
+  #repuestos-table th, #repuestos-table td {
+    border: 1px solid #c2bcbcc5;
+    padding: 8px;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 0.9rem;
+  }
+
+  #repuestos-table th {
+    background-color: #ece7e7;
+    position: sticky;
+    top: 0;
+  }
+
+  #repuestos-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  #repuestos-table tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  /* Categoria*/
+.category-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  #categoria {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 0.9rem;
+    height: 38px; 
+    min-width: 200px; 
+  }
+  
+  /*Botones del CRUD*/
   .action-btn {
     padding: 5px 10px;
     margin: 0 2px;
@@ -450,7 +451,7 @@
     color: white;
   }
 
-  /* Modal Styles */
+  /* CRUD */
   .modal {
     display: none;
     position: fixed;
