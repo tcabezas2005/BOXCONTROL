@@ -2,21 +2,22 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Vehiculos</title>
+  <title>Repuestos</title>
   <link rel="stylesheet" href="e.css">
+  <link rel="stylesheet" href="../general.css">
 </head>
 <body class="collapsed">
-<!--Seccion del Menu -->
+  <!-- Menú  -->
   <div class="sidebar-toggle expanded" id="sidebar-toggle">
     <div class="logo">
       <img src="../Imagenes/cubo.png" alt="BoxControl Logo" class="logo-icon" title="BoxControl">
       <span class="logo-text">BoxControl</span>
     </div>
-  
+
     <button id="menu-toggle">
       <img src="../Imagenes/menu.png" alt="menu">
     </button>
-    
+
     <div class="sidebar" id="sidebar">
       <a href="../Home/home.html" class="icon-btn" title="Inicio">
         <img src="../Imagenes/hogar.png" alt="home">
@@ -39,8 +40,9 @@
         <span class="menu-text">Vehículo</span>
       </a>
     </div>
- </div>
-<!--Ventana del Perfil-->
+  </div>
+
+  <!-- Emcabezado  -->
   <div class="main">
     <header>
       <div class="top-right">
@@ -49,77 +51,83 @@
         </button>
         <a href="../Ajustes/setting.html" class="icon-btnm" title="Configuración">
           <img src="../Imagenes/configurar.png" alt="Configuración">
-        </a> 
-          
+        </a>
+
         <div class="user-menu">
           <div class="user-summary">
             <img src="../Imagenes/gente.png" alt="gente" class="user-icon">
             <img src="../Imagenes/flecha.png" alt="flecha" class="arrow-icon">
           </div>
-            
+
           <div class="dropdown">
             <div class="profile-header">
               <img src="../Imagenes/gente.png" alt="Perfil" class="profile-icon">
               <div class="profile-info">
                 <span class="user-name">Marco</span>
-                <a href="#" class="profile-link">Ver Perfil</a>
+                <a href="../Ajustes/setting.html" class="profile-link">Ver Perfil</a>
               </div>
             </div>
-            <hr />
+            <hr >
             <p>Últimas Actualizaciones</p>
             <p>Ayuda</p>
             <p>Enviar Comentarios</p>
             <p>Política de Privacidad</p>
-            <hr />
+            <hr><br>
             <a href="../Login/login.html" class="logout-link">Cerrar Sesión</a>
-          </div>          
+          </div>
         </div>
       </div>
     </header>
-<!--Seccion de Repuestos-->
+
+    <!--Contenido principal  -->
     <div class="content">
       <div class="panel">
         <h2>Repuestos</h2>
-        <div class="repuesto-actions">
-          <!--Busqueda-->
+
+        <div class="actions">
+          <!-- Búsqueda -->
           <div class="search-container">
             <input type="text" id="search-input" placeholder="Buscar por tipo o SKU">
             <button id="search-btn">Buscar</button>
           </div>
-          
+
+          <!-- Categoría y agregar -->
           <div class="category-container">
             <select id="categoria" required>
               <option value="">Seleccione una categoría...</option>
-              <option value="frenos-y-suspension">Frenos y Suspensión</option>
-              <option value="motor">Motor</option>
-              <option value="sistema-electrico">Sistema Eléctrico</option>
             </select>
             <button id="add-repuesto-btn" class="add-btn">Nuevo Repuesto</button>
           </div>
         </div>
-        <!-- Tabla de Repuestos -->
+
+        <!-- Tabla -->
         <div class="table-container">
-          <table id="repuestos-table">
+          <table id="table">
             <thead>
               <tr>
                 <th>ID</th>
                 <th>Nombre</th>
-                <th>Categoria</th>
+                <th>Categoría</th>
                 <th>Stock</th>
                 <th>Precio</th>
                 <th>Compatibilidad</th>
                 <th>Tipo</th>
                 <th>SKU</th>
                 <th>Acciones</th>
+
               </tr>
             </thead>
             <tbody>
-              <!-- Por el momento se añade en Java -->
+              
+              
+              <!-- Se llena dinámicamente con JS por el momento-->
             </tbody>
           </table>
+
           <div id="no-results" class="no-results" style="display: none;">
             No se encuentra ningún resultado
           </div>
+
           <div id="recent-searches" class="recent-searches">
             <h3>Búsquedas recientes</h3>
             <div class="search-tags"></div>
@@ -127,63 +135,82 @@
         </div>
       </div>
     </div>
-    <!-- Añadir/editar Repuesto  -->
+
+    <!-- Añadir/Editar Repuesto -->
     <div id="repuestos-modal" class="modal">
       <div class="modal-content">
         <span class="close-btn">&times;</span>
-        <h2 id="modal-title">Nuevo Repuesto</h2>
-        <form id="repuesto-form" >
+        <h2 id="modal-title">Nuevo Repuesto</h2><br>
+        <form id="repuesto-form">
           <input type="hidden" id="repuesto-id">
+
           <div class="form-group">
-            <label for="nombre" style="margin-top: 1rem;">Nombre</label>
+            <label for="nombre">Nombre</label>
             <input type="text" id="nombre" required>
           </div>
+
+          <div class="form-group">
+            <label for="SKU">SKU</label>
+            <input type="text" id="SKU" required>
+          </div>
+
           <div class="form-group">
             <label for="categoria">Categoría</label>
-            <select id="categoria" required>
+            <select class="select" id="categoriaf" required>
               <option value="">Seleccione una categoría...</option>
               <option value="frenos-y-suspension">Frenos y Suspensión</option>
               <option value="motor">Motor</option>
               <option value="sistema-electrico">Sistema Eléctrico</option>
             </select>
           </div>
-          <div class="form-group">
-            <label for="stock">Stock</label>
-            <input type="text" id="stock" required>
-          </div>
-          <div class="form-group">
-            <label for="precio">Precio</label>
-            <input type="text" id="precio" required>
-          </div>
+
           <div class="form-group">
             <label for="compatibilidad">Compatibilidad</label>
             <input type="text" id="compatibilidad" required>
           </div>
+          <br>
+          <hr>
+          <br>
+
           <div class="form-group">
-            <label for="tipo">Tipo</label>
-            <input type="text" id="tipo" required>
+            <label for="stock">Stock</label>
+            <input type="text" id="stock" required>
           </div>
+
           <div class="form-group">
-            <label for="SKU">SKU</label>
-            <input type="text" id="SKU" required>
+            <label for="precio">Precio</label>
+            <input type="text" id="precio" required>
           </div>
+
+          <div class="form-group">
+            <label>Tipo:</label>
+            <select  class="select" id="tipo">
+              <option value="">Seleccione un tipo...</option>
+              <option value="original">Original</option>
+              <option value="generico">Generico</option>
+            </select>
+          </div>
+
+      
+
           <button type="submit" class="submit-btn">Guardar</button>
         </form>
       </div>
     </div>
 
-    <!-- Advertencia de eliminar -->
+    <!-- Aviso de la eliminacion  -->
     <div id="confirm-modal" class="modal">
       <div class="modal-content confirm-modal">
         <h2>¿Está seguro?</h2><br>
-        <p>¿Desea eliminar este cliente?</p>
+        <p>¿Desea eliminar este repuesto?</p>
         <div class="confirm-buttons">
           <button id="confirm-yes" class="confirm-btn">Sí</button>
           <button id="confirm-no" class="confirm-btn">No</button>
         </div>
       </div>
-   </div>
+    </div>
   </div>
- <script src="res.js"></script>
+
+  <script src="res.js"></script>
 </body>
 </html>

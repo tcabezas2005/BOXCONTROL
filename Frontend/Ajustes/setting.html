@@ -1,88 +1,129 @@
-<!-- Página en desarrollo     -->
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ajustes</title>
-  <link rel="stylesheet" href="setting.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home</title>
+  <link rel="stylesheet" href="setting.css" >
+  <link rel="stylesheet" href="../general.css" >
 </head>
 
 <body class="collapsed">
-
-  <!-- Sección: Menú  -->
+  <!-- Menú lateral -->
   <div class="sidebar-toggle expanded" id="sidebar-toggle">
     <div class="logo">
-      <img src="../Imagenes/cubo.png" alt="BoxControl Logo" class="logo-icon" title="BoxControl">
+      <img src="../Imagenes/cubo.png" alt="BoxControl Logo" class="logo-icon" title="BoxControl" />
       <span class="logo-text">BoxControl</span>
     </div>
-  
+
     <button id="menu-toggle">
-      <img src="../Imagenes/menu.png" alt="menu">
+      <img src="../Imagenes/menu.png" alt="menu" />
     </button>
-  
+
     <div class="sidebar" id="sidebar">
-      <a href="/Home/home.html" class="icon-btn" title="Inicio">
-        <img src="../Imagenes/hogar.png" alt="home">
+      <a href="../Home/home.html" class="icon-btn" title="Inicio">
+        <img src="../Imagenes/hogar.png" alt="home" />
         <span class="menu-text">Inicio</span>
       </a>
       <a href="../Ordenes/orden.html" class="icon-btn" title="Órdenes">
-        <img src="../Imagenes/bloc.png" alt="bloc">
+        <img src="../Imagenes/bloc.png" alt="bloc" />
         <span class="menu-text">Órdenes</span>
       </a>
       <a href="../repuestos/re.html" class="icon-btn" title="Repuestos">
-        <img src="../Imagenes/Repuestos.png" alt="Repuesto">
+        <img src="../Imagenes/Repuestos.png" alt="Repuesto" />
         <span class="menu-text">Repuestos</span>
       </a>
       <a href="../Cliente/cliente.html" class="icon-btn" title="Clientes">
-        <img src="../Imagenes/cliente.png" alt="cliente">
+        <img src="../Imagenes/cliente.png" alt="cliente" />
         <span class="menu-text">Clientes</span>
       </a>
       <a href="../Vehiculos/carro.html" class="icon-btn" title="Vehículo">
-        <img src="../Imagenes/auto.png" alt="auto">
+        <img src="../Imagenes/auto.png" alt="auto" />
         <span class="menu-text">Vehículo</span>
       </a>
     </div>
   </div>
-  <!-- Sección: Encabezado y Perfil -->
+
+  <!-- Contenido principal -->
   <div class="main">
     <header>
       <div class="top-right">
         <button class="icon-btnm" title="Notificaciones">
-          <img src="../Imagenes/notificaciones.png" alt="Notificaciones">
+          <img src="../Imagenes/notificaciones.png" alt="Notificaciones" />
         </button>
-
         <a href="../Ajustes/setting.html" class="icon-btnm" title="Configuración">
-          <img src="../Imagenes/configurar.png" alt="Configuración">
-        </a> 
-        
+          <img src="../Imagenes/configurar.png" alt="Configuración" />
+        </a>
+
         <div class="user-menu">
           <div class="user-summary">
-            <img src="../Imagenes/gente.png" alt="gente" class="user-icon">
-            <img src="../Imagenes/flecha.png" alt="flecha" class="arrow-icon">
+            <img src="../Imagenes/gente.png" alt="gente" class="user-icon" />
+            <img src="../Imagenes/flecha.png" alt="flecha" class="arrow-icon" />
           </div>
-          
+
           <div class="dropdown">
             <div class="profile-header">
-              <img src="../Imagenes/gente.png" alt="Perfil" class="profile-icon">
+              <img src="../Imagenes/gente.png" alt="Perfil" class="profile-icon" />
               <div class="profile-info">
                 <span class="user-name">Marco</span>
                 <a href="../Ajustes/setting.html" class="profile-link">Ver Perfil</a>
               </div>
             </div>
 
-            <hr>
+            <hr >
             <p>Últimas Actualizaciones</p>
             <p>Ayuda</p>
             <p>Enviar Comentarios</p>
             <p>Política de Privacidad</p>
-            <hr >
+            <hr> <br>
             <a href="../Login/login.html" class="logout-link">Cerrar Sesión</a>
-          </div>          
+          </div>
         </div>
       </div>
     </header>
-  </div>
+
+    <div class="content">
+      <div class="panel">
+        <div class="configuracion-container"><br>
+          <h1>Configuración</h1>
+          <br><br>
+
+          <div class="tabs">
+            <button class="tab active" data-tab="datos">Mis datos</button>
+            <button class="tab" data-tab="contrasena">Contraseña</button>
+          </div>
+          <hr><br><br>
+          <div class="tab-content active" id="datos">
+            <h3>Editar Datos Personales</h3><br>
+            <form id="form-datos">
+              <label for="nombre">Nombre:</label>
+              <input type="text" id="nombre" name="nombre" />
+              <label for="apellido">Apellido:</label>
+              <input type="text" id="apellido" name="apellido" />
+              <label for="correo">Correo electrónico:</label>
+              <input type="email" id="correo" name="correo" /><br>
+              <button type="submit">Guardar cambios</button>
+            </form>
+          </div>
+
+          <div class="tab-content" id="contrasena">
+            <h3>Cambiar Contraseña</h3><br>
+            <form id="form-contrasena">
+              <label for="actual">Contraseña actual:</label>
+              <input type="password" id="actual" name="actual" />
+              <label for="nueva">Nueva contraseña:</label>
+              <input type="password" id="nueva" name="nueva" />
+              <label for="confirmar">Confirmar nueva contraseña:</label>
+              <input type="password" id="confirmar" name="confirmar" /><br>
+              <button type="submit">Guardar cambios</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+  <script src="setting.js"></script>
 
 </body>
-</html>*
+</html>

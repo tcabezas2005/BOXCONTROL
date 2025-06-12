@@ -1,287 +1,63 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: sans-serif;
-  }
-
-  body {
-    display: flex;
-    height: 100%;
-    background-color: #ccc;
-  }
-  /* Menu */
-  .sidebar-toggle {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #222;
-    padding-top: 1rem;
-    width: 60px;
-    transition: width 0.3s ease;
-    overflow: hidden;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-  }
-
-  .sidebar-toggle.expanded {
-    width: 150px;
-    align-items: flex-start;
-  }
-  /* Logo */
-  .logo {
-    font-size: 1.5rem;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.configuracion-container h2 {
     margin-bottom: 1rem;
-  }
+}
 
-  .logo-icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
-  }
-
-  .logo-text {
-    color: white;
-    font-size: 0.8rem;
-    margin-top: 0.2rem;
-    display: none;
-  }
-
-  .sidebar-toggle.expanded .logo-text {
-    display: block;
-    padding: 1rem;
-    font-size: 1rem;
-  }
-  /* Boton de Menu */
-  #menu-toggle {
-    font-size: 1rem;
-    background: none;
-    border: none;
-    color: rgb(235, 223, 223);
-    cursor: pointer;
-    margin-bottom: 1rem;
+.tabs {
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.3rem;
-    width: 100%;
-    margin-left: 0.8rem;
-  }
-
-  .sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 0.2rem;
-    transition: all 0.3s ease;
-  }
-  /* botones del menu */
-  .icon-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.4rem 0.5rem;
-    width: 100%;
-    text-decoration: none;
-    background-color: transparent;
-    border: none;
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    border-radius: 15px;
-  }
-
-  .icon-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .icon-btn.active {
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-  /* Texto de los iconos */
-  .menu-text {
-    display: none;
-    font-size: 0.8rem;
-    text-align: left;
-    color: white;
-  }
-
-  .sidebar-toggle.expanded .menu-text {
-    display: inline;
-  }
-  /* Ajustar el margen del menu  */
-  .main .content {
-    margin-left: 60px;
-    transition: margin-left 0.3s ease;
-  }
-
-  .sidebar-toggle.expanded + .main .content {
-    margin-left: 150px;
-  }
-  /* Ventana del Perfil  */
-  .main {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  }
-
-  header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #ccc;
-  padding: 0.5rem 1rem;
-  }
-  /* Esquina derecha */
-  .top-right {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-left: auto;
-  }
-  /* iconos */
-  .icon-btnm {
-  background-color: rgb(247, 241, 241);
-  border-radius: 5px;
-  padding: 4px;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 36px;
-  width: 36px;
-  }
-  /* Usuario */
-  .user-menu {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  }
-
-  .user-summary {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  cursor: pointer;
-  }
-
-  .user-summary .user-icon {
-  height: 30px;
-  width: 30px;
-  object-fit: cover;
-  }
-  /* elementos del perfil */
-  .dropdown {
-  display: none;
-  position: absolute;
-  top: 40px;
-  right: 0;
-  background-color: white;
-  border: 1px solid #ccc;
-  padding: 1rem;
-  width: 200px;
-  line-height: 25px;
-  border-radius: 10px;
-  font-size: 0.8rem;
-  box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
-  z-index: 1000;
-  }
-
-  .user-menu:hover .dropdown {
-  display: block;
-  }
-
-  .profile-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
-  }
-
-  .profile-icon {
-  width: 40px;
-  height: 40px;
-  background-color: #ccc;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 10px;
-  }
-
-  .profile-info {
-  display: flex;
-  flex-direction: column;
-  }
-
-  .user-name {
-  font-weight: bold;
-  font-size: 14px;
-  color: #333;
-  }
-
-  .profile-link {
-  font-size: 13px;
-  color: gray;
-  text-decoration: none;
-  margin-top: 2px;
-  }
-
-  .profile-link:hover {
-  text-decoration: underline;
-  }
-  /* Cerrar Sesion */
-  .logout-link {
-  display: inline-block;
-  padding: 8px 16px;
-  background-color: #817675ac;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: background-color 0.3s;
-  }
-
-  .logout-link:hover {
-  background-color: #e06659;
-  }
-
-  /* Seccion Cliente */
-  .content {
-    padding: 2rem;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; 
-    transition: margin-left 0.3s ease; 
-    margin-left: 60px; 
-  }
-
-  .content.expanded {
-    margin-left: 240px; /
-  }
-
-  .panel {
-    font-family: cursive;
-    background-color: white;
-    border-radius: 15px;
-    padding: 1rem;
-    max-width: 1150px;
-    width: 100%;
-    box-shadow: 0 0 10px rgba(138, 6, 6, 0.1);
-    margin-top: 1rem;
     gap: 1rem;
-    flex-wrap: wrap;
-    border:1px solid black;
-  }
+    margin-bottom: 1rem;
+}
 
-  .panel h2 {
-    margin-bottom: 2rem;
-  }
+.tab {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    background-color: #eee;
+    border: none;
+    border-radius: 5px;
+}
 
+.tab:hover {
+    background-color: #ccc;
+}
+.tab.active {
+    background-color: #ccc;
+    font-weight: bold;
+}
+
+.tab-content {
+    display: none;
+
+}
+
+.tab-content.active {
+    display: block;
+}
+
+form label {
+    display: block;
+    margin-top: 0.5rem;
+}
+
+form input {
+    width: 100%;
+    padding: 0.4rem;
+    margin-top: 0.2rem;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+}
+
+form button {
+    padding: 1rem 1rem;
+    background-color: #222;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+form button:hover {
+    background-color: #857d7d;
+}
+ hr {
+    color: black;
+    margin: 1rem 0;
+ }

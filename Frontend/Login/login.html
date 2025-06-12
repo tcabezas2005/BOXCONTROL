@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
   <title>BoxControl</title>
   <link rel="stylesheet" href="stylesl.css">
 </head>
 <body>
   <div class="container">
     <div class="login-box">
+
       <div class="form-section">
+        <!-- Logo -->
         <div class="logo-container">
-            <img src="../Imagenes/cubo.png" alt="BoxControl Logo" class="logo-icon">
-            <span class="logo-text">BoxControl</span>
+          <img src="../Imagenes/cubo.png" alt="BoxControl Logo" class="logo-icon" >
+          <span class="logo-text">BoxControl</span>
         </div>
+
+        <!-- Título -->
         <div class="form-content">
-            <h1>Inicia Sesión en<br><strong>BoxControl</strong></h1>
-            <div class="separator"></div>
+          <h1>Inicia Sesión en<br><strong>BoxControl</strong></h1>
+          <div class="separator"></div>
         </div>
-    
+
+        <!-- Inicio de sesión -->
         <form id="loginForm">
-          <input type="text" id="username" placeholder="Usuario" required>
+          <input type="text" id="username" placeholder="Usuario" required >
           <small class="error" id="userError">Por favor, introduce un nombre de usuario</small>
 
           <div class="password-field">
-            <input type="password" id="password" placeholder="Contraseña" required>
-            <span class="toggle-password" id="togglePassword"><i class="fi fi-rs-crossed-eye"></i></span>
+            <input type="password" id="password" placeholder="Contraseña" required >
+            <span class="toggle-password" id="togglePassword"></span>
           </div>
           <small class="error" id="passwordError">La contraseña debe tener al menos 6 caracteres</small>
 
@@ -38,6 +43,7 @@
       </div>
 
       <div class="image-section"></div>
+
     </div>
   </div>
 

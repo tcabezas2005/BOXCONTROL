@@ -1,46 +1,50 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
-  <title>Vehiculos</title>
+  <title>Órdenes</title>
   <link rel="stylesheet" href="orden.css">
+  <link rel="stylesheet" href="../general.css">
 </head>
+
 <body class="collapsed">
-<!--Seccion del Menu -->
+  <!-- Sección del Menú -->
   <div class="sidebar-toggle expanded" id="sidebar-toggle">
     <div class="logo">
       <img src="../Imagenes/cubo.png" alt="BoxControl Logo" class="logo-icon" title="BoxControl">
       <span class="logo-text">BoxControl</span>
     </div>
-  
+
     <button id="menu-toggle">
-      <img src="../Imagenes/menu.png" alt="menu">
+      <img src="../Imagenes/menu.png" alt="Menu">
     </button>
-    
+
     <div class="sidebar" id="sidebar">
       <a href="../Home/home.html" class="icon-btn" title="Inicio">
-        <img src="../Imagenes/hogar.png" alt="home">
+        <img src="../Imagenes/hogar.png" alt="Inicio">
         <span class="menu-text">Inicio</span>
       </a>
       <a href="../Ordenes/orden.html" class="icon-btn active" title="Órdenes">
-        <img src="../Imagenes/bloc.png" alt="bloc">
+        <img src="../Imagenes/bloc.png" alt="Órdenes">
         <span class="menu-text">Órdenes</span>
       </a>
       <a href="../repuestos/re.html" class="icon-btn" title="Repuestos">
-        <img src="../Imagenes/Repuestos.png" alt="Repuesto">
+        <img src="../Imagenes/Repuestos.png" alt="Repuestos">
         <span class="menu-text">Repuestos</span>
       </a>
-      <a href="../Cliente/cliente.html" class="icon-btn " title="Clientes">
-        <img src="../Imagenes/cliente.png" alt="cliente">
+      <a href="../Cliente/cliente.html" class="icon-btn" title="Clientes">
+        <img src="../Imagenes/cliente.png" alt="Clientes">
         <span class="menu-text">Clientes</span>
       </a>
       <a href="../Vehiculos/carro.html" class="icon-btn" title="Vehículo">
-        <img src="../Imagenes/auto.png" alt="auto">
+        <img src="../Imagenes/auto.png" alt="Vehículo">
         <span class="menu-text">Vehículo</span>
       </a>
     </div>
- </div>
-<!--Ventana del Perfil-->
+  </div>
+
+  <!-- Ventana del Perfil -->
   <div class="main">
     <header>
       <div class="top-right">
@@ -49,76 +53,74 @@
         </button>
         <a href="../Ajustes/setting.html" class="icon-btnm" title="Configuración">
           <img src="../Imagenes/configurar.png" alt="Configuración">
-        </a> 
-          
+        </a>
         <div class="user-menu">
           <div class="user-summary">
-            <img src="../Imagenes/gente.png" alt="gente" class="user-icon">
-            <img src="../Imagenes/flecha.png" alt="flecha" class="arrow-icon">
+            <img src="../Imagenes/gente.png" alt="Usuario" class="user-icon">
+            <img src="../Imagenes/flecha.png" alt="Flecha" class="arrow-icon">
           </div>
-            
           <div class="dropdown">
             <div class="profile-header">
               <img src="../Imagenes/gente.png" alt="Perfil" class="profile-icon">
               <div class="profile-info">
                 <span class="user-name">Marco</span>
-                <a href="#" class="profile-link">Ver Perfil</a>
+                <a href="../Ajustes/setting.html" class="profile-link">Ver Perfil</a>
               </div>
             </div>
-            <hr />
+            <hr>
             <p>Últimas Actualizaciones</p>
             <p>Ayuda</p>
             <p>Enviar Comentarios</p>
             <p>Política de Privacidad</p>
-            <hr />
+            <hr><br>
             <a href="../Login/login.html" class="logout-link">Cerrar Sesión</a>
-          </div>          
+          </div>
         </div>
       </div>
     </header>
-<!--Seccion de Repuestos-->
+
+    <!-- Sección de Órdenes -->
     <div class="content">
       <div class="panel">
-        <h2>Ordenes</h2>
-        <div class="ordenes-actions">
-           <!--Busqueda-->
+        <h2>Órdenes</h2>
+        <div class="actions">
+          <!-- Buscador -->
           <div class="search-container">
             <input type="text" id="search-input" placeholder="Buscar por n° de orden o cliente">
             <button id="search-btn">Buscar</button>
           </div>
-          
+
           <div class="category-container">
             <select id="categoria" required>
-              <option value="">Seleccione el estadao</option>
-              <option value="terminado">Terminado</option>
-              <option value="en proceso">En Proceso</option>|
-              <option value="pendiente">Pendiente</option>
-              <option value="cancelada">Cancelado</option>
+              <option value="">Seleccione el estado</option>
+
             </select>
-            <button id="add-ordenes-btn" class="add-btn">Nueva Orden</button>
+            <button id="add-ordenes-btn" class="add-btn" >Nueva Orden</button>
           </div>
         </div>
-        <!-- Tabla de Orden -->
+
+        <!-- Tabla de Órdenes -->
         <div class="table-container">
-          <table id="ordenes-table">
+          <table id="table">
             <thead>
               <tr>
                 <th>Estado</th>
                 <th>N° Orden</th>
                 <th>Cliente</th>
-                <th>Vehiculo</th>
-                <th>Servicio</th>
+                <th>Vehículo</th>
                 <th>Fecha</th>
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
-              <!-- Por el momento se añade en Java -->
+              <!-- Datos añadidos por JavaScript -->
             </tbody>
           </table>
-          <div id="no-results" class="no-results" style="display: none;">
-            No se encuentra ningún resultado
+
+          <div id="no-order-results" class="no-results" style="display: none;">
+            No se encuentra ningún resultado.
           </div>
+
           <div id="recent-searches" class="recent-searches">
             <h3>Búsquedas recientes</h3>
             <div class="search-tags"></div>
@@ -126,22 +128,230 @@
         </div>
       </div>
     </div>
+
     <!-- Añadir/editar Orden  -->
-     <!-- Contenido en desarrollo. Se completará en la entrega final. -->
-      <!--Estoy pensando por donde empezar , ya que quiero hacer lo igual a la captura presentada-->
-      
-    <!-- Advertencia de eliminar -->
+    <div id="orden-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <div class="orden-trabajo-formulario">
+          <h2 id="orden-modal-title">Orden De Trabajo <span class="numero-orden" id="orden-id-display">N° 00130</span></h2>
+          <input type="hidden" id="order-id">
+
+          <div class="seccion-datos">
+            <div class="campo">
+              <label for="nombre">Nombre:</label>
+              <input type="text" id="nombre" placeholder="Nombre">
+            </div>
+            <div class="campo">
+              <label for="cedula">Cédula / RUC:</label>
+              <input type="text" id="cedula" placeholder="Cédula">
+            </div>
+            <div class="campo">
+              <label for="direccion">Dirección:</label>
+              <input type="text" id="direccion" placeholder="Dirección">
+            </div>
+            <div class="campo">
+              <label for="correo">Correo Electrónico:</label>
+              <input type="email" id="correo" placeholder="Correo Electrónico">
+            </div>
+            <div class="campo">
+              <label for="telefono">Teléfono:</label>
+              <input type="tel" id="telefono" placeholder="Teléfono">
+            </div>
+            <div class="campo">
+              <label for="fecha">Fecha:</label>
+              <input type="date" id="fecha">
+            </div>
+          </div>
+          <hr>
+          <div class="seccion-vehiculo">
+            <div class="campo">
+              <label for="marca">Marca:</label>
+              <input type="text" id="marca" placeholder="Marca">
+            </div>
+            <div class="campo">
+              <label for="modelo">Modelo:</label>
+              <input type="text" id="modelo" placeholder="Modelo">
+            </div>
+            <div class="campo">
+              <label for="año">Año:</label>
+              <input type="number" id="año" placeholder="Año">
+            </div>
+            <div class="campo">
+              <label for="color">Color:</label>
+              <input type="text" id="color" placeholder="Color">
+            </div>
+            <div class="campo">
+              <label for="placa">Placa:</label>
+              <input type="text" id="placa" placeholder="Placa">
+            </div>
+            <div class="campo">
+              <label for="km">km:</label>
+              <input type="number" id="km" placeholder="Kilometraje">
+            </div>
+          </div>
+
+          <hr>
+          <div class="seccion-objetos">
+            <div class="contenedor-izquierdo">
+              <div class="grid-objetos">
+                <div class="objetos">
+                  <input type="checkbox" id="limpia" name="objeto">
+                  <label for="limpia">Limpiaparabrisas</label>
+                </div>
+                <div class="objetos">
+                  <input type="checkbox" id="espejos" name="objeto">
+                  <label for="espejos">Espejos</label>
+                </div>
+                <div class="objetos">
+                  <input type="checkbox" id="luces" name="objeto">
+                  <label for="luces">Luces</label>
+                </div>
+                <div class="objetos">
+                  <input type="checkbox" id="placas" name="objeto">
+                  <label for="placas">Placas</label>
+                </div>
+                <div class="objetos">
+                  <input type="checkbox" id="radio" name="objeto">
+                  <label for="radio">Radio</label>
+                </div>
+                <div class="objetos">
+                  <input type="checkbox" id="bateria" name="objeto">
+                  <label for="bateria">Batería</label>
+                </div>
+                <div class="objetos">
+                  <input type="checkbox" id="a_c" name="objeto">
+                  <label for="a_c">A/C</label>
+                </div>
+                <div class="objetos">
+                  <input type="checkbox" id="matricula" name="objeto">
+                  <label for="matricula">Matrícula</label>
+                </div>
+                <div class="objetos">
+                  <input type="checkbox" id="extintor" name="objeto">
+                  <label for="extintor">Extintor</label>
+                </div>
+                <div class="objetos">
+                  <input type="checkbox" id="gata" name="objeto">
+                  <label for="gata">Gata</label>
+                </div>
+                <div class="objetos">
+                  <input type="checkbox" id="llaves" name="objeto">
+                  <label for="llaves">Llaves de ruedas</label>
+                </div>
+                <div class="objetos">
+                  <input type="checkbox" id="llanta" name="objeto">
+                  <label for="llanta">Llanta de repuesto</label>
+                </div>
+              </div>
+
+              <div class="text">
+                <label for="observaciones"><strong>Observaciones:</strong></label>
+                <textarea id="observaciones" rows="3" placeholder="Escribe aquí las observaciones..."></textarea>
+              </div>
+            </div>
+
+            <div class="contenedor-derecho">
+              <label for="imagen"><strong>Automovil:</strong></label>
+              <input type="file" id="imagen" accept="image/*" onchange="mostrarImagen(event)">
+              <div id="preview-container">
+                <img id="preview" src="#" alt="Previsualización" style="display: none;">
+              </div>
+            </div>
+            <hr>
+            <div class="contenedor-servicios">
+              <div class="seccion-servicio tarjeta">
+                <h3> Servicios</h3>
+                <table class="tabla-servicios">
+                  <thead>
+                    <tr>
+                      <th>Servicio</th>
+                      <th>Precio ($)</th>
+                      <th>+</th>
+                    </tr>
+                  </thead>
+                  <tbody id="lista-servicios">
+                    <tr>
+                      <td><input type="text" placeholder="Ej: Cambio de aceite" name="servicio"></td>
+                      <td><input type="number" placeholder="0.00" name="precio-servicio"></td>
+                      <td><button class="btn-agregar">+</button></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="separador-vertical"></div>
+
+              <div class="repuestos tarjeta">
+                <h3> Repuestos</h3>
+                <label for="busqueda-repuesto">Buscar repuesto:</label>
+                <input type="text" id="busqueda-repuesto" placeholder="Ej: Bujía, Filtro, Correa..."
+                  class="input-lindo">
+
+                <div class="resultados-repuestos">
+                  <p class="hint">Resultados aparecerán aquí...</p>
+                </div>
+
+                <div class="lista-repuestos-agregados">
+                  <h4>Repuestos agregados:</h4>
+                  <ul id="repuestos-agregados">
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="seccion-final">
+            <div class="columna forma-pago">
+              <h4>Forma de pago:</h4>
+              <label><input type="radio" name="forma-pago" value="efectivo"> Efectivo</label>
+              <label><input type="radio" name="forma-pago" value="tarjeta"> Tarjeta de crédito</label>
+              <label><input type="radio" name="forma-pago" value="cheque"> Cheque</label>
+              <label><input type="radio" name="forma*pago" value="transferencia"> Transferencia</label>
+            </div>
+
+            <div class="columna totales">
+              <label>Total sin IVA <input type="text" id="total-sin-iva" readonly></label>
+              <label>Mano de Obra <input type="text" id="mano-obra" readonly></label>
+              <label>IVA <input type="text" id="iva" readonly></label>
+              <label><strong>TOTAL</strong> <input type="text" id="total-final" readonly></label>
+            </div>
+
+            <div class="columna estado-comentarios">
+              <label for="estado-orden">Estado</label>
+              <select id="estado-orden" name="estado">
+                <option value="">Seleccione...</option>
+                <option value="terminado" selected>Terminado</option>
+                <option value="pendiente">Pendiente</option>
+                <option value="en_proceso">En Proceso</option>
+              </select>
+
+              <textarea placeholder="Comentarios..."></textarea>
+            </div>
+          </div>
+
+          <div class="acciones">
+            <button class="btn cancelar" id="cancelar-orden-btn">Cancelar</button>
+            <button class="btn guardar" id="guardar-orden-btn">Guardar Orden</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Advertencia de eliminar  -->
     <div id="confirm-modal" class="modal">
       <div class="modal-content confirm-modal">
         <h2>¿Está seguro?</h2><br>
-        <p>¿Desea eliminar este cliente?</p>
+        <p>¿Desea eliminar este Orden?</p>
         <div class="confirm-buttons">
           <button id="confirm-yes" class="confirm-btn">Sí</button>
           <button id="confirm-no" class="confirm-btn">No</button>
         </div>
       </div>
-   </div>
+    </div>
   </div>
- <script src="orden.js"></script>
+
+
+  <script src="orden.js"></script>
 </body>
+
 </html>

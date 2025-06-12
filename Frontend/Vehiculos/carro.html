@@ -2,45 +2,47 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Vehiculos</title>
-  <link rel="stylesheet" href="carro.css">
+  <title>Vehículos</title>
+  <link rel="stylesheet" href="../general.css">
+  
 </head>
 <body class="collapsed">
-<!--Seccion del Menu -->
+  <!-- Menú -->
   <div class="sidebar-toggle expanded" id="sidebar-toggle">
     <div class="logo">
       <img src="../Imagenes/cubo.png" alt="BoxControl Logo" class="logo-icon" title="BoxControl">
       <span class="logo-text">BoxControl</span>
     </div>
-  
+
     <button id="menu-toggle">
-      <img src="../Imagenes/menu.png" alt="menu">
+      <img src="../Imagenes/menu.png" alt="Menú">
     </button>
-    
+
     <div class="sidebar" id="sidebar">
       <a href="../Home/home.html" class="icon-btn" title="Inicio">
-        <img src="../Imagenes/hogar.png" alt="home">
+        <img src="../Imagenes/hogar.png" alt="Inicio">
         <span class="menu-text">Inicio</span>
       </a>
       <a href="../Ordenes/orden.html" class="icon-btn" title="Órdenes">
-        <img src="../Imagenes/bloc.png" alt="bloc">
+        <img src="../Imagenes/bloc.png" alt="Órdenes">
         <span class="menu-text">Órdenes</span>
       </a>
       <a href="../repuestos/re.html" class="icon-btn" title="Repuestos">
-        <img src="../Imagenes/Repuestos.png" alt="Repuesto">
+        <img src="../Imagenes/Repuestos.png" alt="Repuestos">
         <span class="menu-text">Repuestos</span>
       </a>
       <a href="../Cliente/cliente.html" class="icon-btn" title="Clientes">
-        <img src="../Imagenes/cliente.png" alt="cliente">
+        <img src="../Imagenes/cliente.png" alt="Clientes">
         <span class="menu-text">Clientes</span>
       </a>
-      <a href="../Vehiculos/carro.html" class="icon-btn active" title="Vehículo">
-        <img src="../Imagenes/auto.png" alt="auto">
-        <span class="menu-text">Vehículo</span>
+      <a href="../Vehiculos/carro.html" class="icon-btn active" title="Vehículos">
+        <img src="../Imagenes/auto.png" alt="Vehículos">
+        <span class="menu-text">Vehículos</span>
       </a>
     </div>
- </div>
-<!--Ventana del Perfil-->
+  </div>
+
+  <!-- Encabezado -->
   <div class="main">
     <header>
       <div class="top-right">
@@ -49,67 +51,70 @@
         </button>
         <a href="../Ajustes/setting.html" class="icon-btnm" title="Configuración">
           <img src="../Imagenes/configurar.png" alt="Configuración">
-        </a> 
-          
+        </a>
+
         <div class="user-menu">
           <div class="user-summary">
-            <img src="../Imagenes/gente.png" alt="gente" class="user-icon">
-            <img src="../Imagenes/flecha.png" alt="flecha" class="arrow-icon">
+            <img src="../Imagenes/gente.png" alt="Usuario" class="user-icon">
+            <img src="../Imagenes/flecha.png" alt="Desplegar" class="arrow-icon">
           </div>
-            
+
           <div class="dropdown">
             <div class="profile-header">
               <img src="../Imagenes/gente.png" alt="Perfil" class="profile-icon">
               <div class="profile-info">
                 <span class="user-name">Marco</span>
-                <a href="#" class="profile-link">Ver Perfil</a>
+                <a href="../Ajustes/setting.html" class="profile-link">Ver Perfil</a>
               </div>
             </div>
-            <hr />
+            <hr >
             <p>Últimas Actualizaciones</p>
             <p>Ayuda</p>
             <p>Enviar Comentarios</p>
             <p>Política de Privacidad</p>
-            <hr />
+            <hr> <br>
             <a href="../Login/login.html" class="logout-link">Cerrar Sesión</a>
-          </div>          
+          </div>
         </div>
       </div>
     </header>
-<!--Seccion del Vehiculo-->
+
+    <!-- Sección Vehículos -->
     <div class="content">
       <div class="panel">
-        <h2>Vehiculos</h2>
-        <div class="vehiculo-actions">
-          <!--Busqueda-->
+        <h2>Vehículos</h2>
+
+        <div class="actions">
           <div class="search-container">
             <input type="text" id="search-input" placeholder="Buscar por placa, marca o cliente">
             <button id="search-btn">Buscar</button>
           </div>
-          <button id="add-vehiculo-btn" class="add-btn">Nuevo Vehiculo</button>
+          <button id="add-vehiculo-btn" class="add-btn">Nuevo Vehículo</button>
         </div>
-        <!-- Tabla de Vehiculos -->
+
+        <!-- Tabla de Vehículos -->
         <div class="table-container">
-          <table id="vehiculos-table">
+          <table id="table">
             <thead>
               <tr>
                 <th>ID</th>
                 <th>Marca</th>
-                <th>Placa</th>
-                <th>Color</th>
                 <th>Modelo</th>
                 <th>Año</th>
-                <th>Dueño</th>
+                <th>Color</th>
+                <th>Placa</th>
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
-              <!-- Por el momento se añade en Java -->
+              <!-- Se rellena dinámicamente con JavaScript por el momento  -->
             </tbody>
           </table>
+
           <div id="no-results" class="no-results" style="display: none;">
             No se encuentra ningún resultado
           </div>
+
           <div id="recent-searches" class="recent-searches">
             <h3>Búsquedas recientes</h3>
             <div class="search-tags"></div>
@@ -117,54 +122,58 @@
         </div>
       </div>
     </div>
-    <!-- Añadir/editar Vehiculo  -->
+
+    <!-- Añadir/Editar Vehículo -->
     <div id="vehiculo-modal" class="modal">
       <div class="modal-content">
         <span class="close-btn">&times;</span>
-        <h2 id="modal-title">Nuevo Vehiculo</h2>
-        <form id="vehiculo-form" >
+        <h2 id="modal-title">Nuevo Vehículo</h2>
+
+        <form id="vehiculo-form">
           <input type="hidden" id="vehiculo-id">
+
           <div class="form-group">
-            <label for="marca" style="margin-top: 1rem;">Marca</label>
+            <label for="marca">Marca</label>
             <input type="text" id="marca" required>
           </div>
+
           <div class="form-group">
             <label for="placa">Placa</label>
             <input type="text" id="placa" required>
           </div>
+
           <div class="form-group">
             <label for="color">Color</label>
             <input type="text" id="color" required>
           </div>
+
           <div class="form-group">
             <label for="modelo">Modelo</label>
             <input type="text" id="modelo" required>
           </div>
+
           <div class="form-group">
             <label for="año">Año</label>
             <input type="number" id="año" required>
-          </div>
-          <div class="form-group">
-            <label for="dueño">Dueño</label>
-            <input type="text" id="dueño" required>
           </div>
           <button type="submit" class="submit-btn">Guardar</button>
         </form>
       </div>
     </div>
 
-    <!-- Advertencia de eliminar -->
+    <!-- Aviso de eliminacion  -->
     <div id="confirm-modal" class="modal">
       <div class="modal-content confirm-modal">
         <h2>¿Está seguro?</h2><br>
-        <p>¿Desea eliminar este cliente?</p>
+        <p>¿Desea eliminar este vehículo?</p>
         <div class="confirm-buttons">
           <button id="confirm-yes" class="confirm-btn">Sí</button>
           <button id="confirm-no" class="confirm-btn">No</button>
         </div>
       </div>
-   </div>
+    </div>
   </div>
- <script src="carro.js"></script>
+
+  <script src="carro.js"></script>
 </body>
 </html>

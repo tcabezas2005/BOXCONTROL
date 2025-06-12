@@ -1,4 +1,4 @@
-// Menu
+ // Menu
 const menuToggle = document.getElementById('menu-toggle');
 const sidebarToggle = document.getElementById('sidebar-toggle');
 
@@ -16,6 +16,7 @@ document.getElementById('menu-toggle').addEventListener('click', function () {
 });
 
 //Pendientes
+
 const taskList = document.getElementById('task-list');
 const addTaskBtn = document.getElementById('add-task');
 
@@ -24,21 +25,26 @@ addTaskBtn.addEventListener('click', () => {
 
   newTaskItem.innerHTML = `
     <input type="checkbox" class="task-checkbox" />
-    <input type="text" class="task-input" placeholder="Escribe tu tarea..." />
+    <span class="task-input" contenteditable="true"></span>
   `;
 
   taskList.appendChild(newTaskItem);
-
-  taskList.addEventListener('change', (e) => {
-    if (e.target.classList.contains('task-checkbox')) {
-      const input = e.target.nextElementSibling;
-      if (e.target.checked) {
-        input.style.textDecoration = 'line-through';
-        input.style.color = '#888';
-      } else {
-        input.style.textDecoration = 'none';
-        input.style.color = '#000';
-      }
-    }
-  });
 });
+
+taskList.addEventListener('change', (e) => {
+  if (e.target.classList.contains('task-checkbox')) {
+    const li = e.target.closest('li');
+    const span = li.querySelector('.task-input');
+
+    if (e.target.checked) {
+      span.textContent = 'Por fin uno menos :3';
+      span.style.textDecoration = 'line-through';
+      span.style.color = '#888';
+    } else {
+      span.textContent = ''; 
+      span.style.textDecoration = 'none';
+      span.style.color = '#000';
+    }
+  }
+});
+;

@@ -1,21 +1,21 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+ }
+
   body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #f0f0f0;
   }
-  
+
   .container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
   }
-  
+
   .login-box {
     display: flex;
     width: 90%;
@@ -25,34 +25,32 @@
     overflow: hidden;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   }
-  
+
   .form-section {
     flex: 1;
     padding: 60px 50px;
-    display: block;
-    flex-direction: column;
     position: relative;
   }
-  
+
   .form-section h1 {
     font-size: 28px;
     color: #333;
     margin-bottom: 15px;
     text-align: center;
   }
-  
+
   .separator {
     height: 1px;
     width: 100%;
     background-color: #ccc;
     margin: 15px 0 30px;
   }
-  
+
   form {
     display: flex;
     flex-direction: column;
   }
-  
+
   input[type="text"],
   input[type="password"] {
     width: 100%;
@@ -62,12 +60,12 @@
     border-radius: 8px;
     font-size: 14px;
   }
-  
+
   .password-field {
     position: relative;
     margin-top: 10px;
   }
-  
+
   .toggle-password {
     position: absolute;
     right: 15px;
@@ -76,14 +74,14 @@
     cursor: pointer;
     font-size: 18px;
   }
-  
+
   .error {
     color: red;
     font-size: 12px;
     margin: 5px 0 0;
     display: none;
   }
-  
+
   .remember {
     display: flex;
     align-items: center;
@@ -92,12 +90,12 @@
     font-style: italic;
     color: #555;
   }
-  
+
   .remember input {
     margin-right: 8px;
     accent-color: #1677ff;
   }
-  
+
   .login-btn {
     background: #1677ff;
     color: white;
@@ -109,48 +107,36 @@
     cursor: pointer;
     transition: background 0.3s ease;
   }
-  
+
   .login-btn:hover {
     background: #0d5edb;
   }
-  
+
   .image-section {
     flex: 1;
     background: url('https://i.pinimg.com/564x/a7/90/28/a790287b8afd44b30a6f7d67f25bd042.jpg') no-repeat center center;
     background-size: cover;
   }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    .login-box {
-      flex-direction: column;
-    }
-  
-    .image-section {
-      height: 200px;
-    }
-  }
+
   .logo-container {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin-bottom: 35px;
-    margin-left: 20px;
-    margin-top: 10px;
+    margin: 10px 0 35px 20px;
   }
-  
+
   .logo-icon {
     width: 20px;
     height: 20px;
     margin-right: 10px;
   }
-  
+
   .logo-text {
     font-size: 12px;
     font-weight: bold;
     color: #083a80;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
+
   .form-content {
     max-width: 400px;
     margin: 0 auto;

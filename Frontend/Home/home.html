@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
-  <link rel="stylesheet" href="stylesh.css" />
+  <link rel="stylesheet" href="stylesh.css">
+  <link rel="stylesheet" href="../general.css">
 </head>
 <body class="collapsed">
   <!--Seccion del Menu -->
@@ -64,59 +65,61 @@
               <img src="../Imagenes/gente.png" alt="Perfil" class="profile-icon">
               <div class="profile-info">
                 <span class="user-name">Marco</span>
-                <a href="#" class="profile-link">Ver Perfil</a>
+                <a href="../Ajustes/setting.html" class="profile-link">Ver Perfil</a>
               </div>
             </div>
-            <hr />
+            <hr>
             <p>Últimas Actualizaciones</p>
             <p>Ayuda</p>
             <p>Enviar Comentarios</p>
             <p>Política de Privacidad</p>
-            <hr />
+            <hr><br>
             <a href="../Login/login.html" class="logout-link">Cerrar Sesión</a>
           </div>          
        </div>
-     </div>
+      </div>
     </header>
-<!--Seccin de Inicio-->
-    <div class="content">
-      <div class="panel">
-        <h2>Inicio</h2><br>
-        <div class="fila-info-pendiente">
-          <div class="info">
-            <h3 class="info-title">Info.Personal</h3>
-            <div class="info-contenido">
-              <img src="../Imagenes/perfil-del-usuario.png" alt="Perfil" class="perfil-icono">
-              <div class="info-datos">
-                <p><strong>Nombre</strong> </p>
-                <p>Juan Pérez</p>
-                <p><strong>Rol</strong> </p>
-                <p>Técnico</p>
-                <p><strong>Último acceso</strong> </p>
-                <p>06.05.2025 6:23 AM</p>
+     <!--Seccin de Inicio-->
+      <div class="content">
+        <div class="panel">
+          <h2>Inicio</h2><br>
+          <div class="fila-info-pendiente">
+            <div class="info">
+              <h3 class="info-title">Info.Personal</h3>
+              <div class="info-contenido">
+                <img src="../Imagenes/perfil-del-usuario.png" alt="Perfil" class="perfil-icono">
+                <div class="info-datos">
+                  <p><strong>Nombre</strong> </p>
+                  <p>Juan Pérez</p>
+                  <p><strong>Rol</strong> </p>
+                  <p>Técnico</p>
+                  <p><strong>Último acceso</strong> </p>
+                  <p>06.05.2025 6:23 AM</p>
+                </div>
               </div>
+            </div>
+          <!--Seccion de Botones-->
+            <div class="info-botones">
+              <a href="../repuestos/re.html" class="btn-small yellow">Ver Repuestos</a>
+              <a href="../Ordenes/orden.html" class="btn-small green">Ver Orden</a>
+              <a href="../Vehiculos/carro.html" class="btn-small red">Ver Vehículos</a>
+            </div>
+            <!--Pendientes-->
+            <div class="pendientes">
+              <h2>Pendientes</h2><br>
+              <ul id="task-list">
+                <li>
+                  <input type="checkbox" class="task-checkbox">
+                  <span class="task-input" contenteditable="true" ></span>
+                </li>
+              </ul>
+              <button id="add-task">+ Añadir Tarea</button>
+           </div>
           </div>
-          </div>
-<!--Seccion de Botones-->
-          <div class="info-botones">
-            <button class="btn-small yellow">Ver Repuestos</button>
-            <button class="btn-small green">Nueva Orden</button>
-            <button class="btn-small red">Ver Vehiculos</button>
-          </div>
-<!--Pendientes-->
-          <div class="pendientes">
-            <h2>Pendientes</h2><br>
-            <ul id="task-list">
-              <li>
-                <input type="checkbox" class="check"> 
-                <input type="text" class="task-input" placeholder="Escribe tu tarea..." /></li>
-            </ul>
-            <button id="add-task">+ Añadir Tarea</button>
-         </div>
         </div> 
+      </div>
     </div>
   </div>
-
   <script src="home.js"></script>
 </body>
 </html>
