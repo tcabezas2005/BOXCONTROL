@@ -6,17 +6,18 @@
   <link rel="stylesheet" href="cliente.css">
 </head>
 <body class="collapsed">
-<!--Seccion del Menu -->
+
+  <!-- Seccion: Menu -->
   <div class="sidebar-toggle expanded" id="sidebar-toggle">
     <div class="logo">
       <img src="../Imagenes/cubo.png" alt="BoxControl Logo" class="logo-icon" title="BoxControl">
       <span class="logo-text">BoxControl</span>
     </div>
-  
+
     <button id="menu-toggle">
       <img src="../Imagenes/menu.png" alt="menu">
     </button>
-    
+
     <div class="sidebar" id="sidebar">
       <a href="../Home/home.html" class="icon-btn" title="Inicio">
         <img src="../Imagenes/hogar.png" alt="home">
@@ -39,8 +40,9 @@
         <span class="menu-text">Vehículo</span>
       </a>
     </div>
- </div>
-<!--Ventana del Perfil -->
+  </div>
+
+  <!-- Seccion: Encabezado y Perfil-->
   <div class="main">
     <header>
       <div class="top-right">
@@ -50,45 +52,48 @@
         <a href="../Ajustes/setting.html" class="icon-btnm" title="Configuración">
           <img src="../Imagenes/configurar.png" alt="Configuración">
         </a> 
-          
+
         <div class="user-menu">
           <div class="user-summary">
             <img src="../Imagenes/gente.png" alt="gente" class="user-icon">
             <img src="../Imagenes/flecha.png" alt="flecha" class="arrow-icon">
           </div>
-            
+
           <div class="dropdown">
             <div class="profile-header">
               <img src="../Imagenes/gente.png" alt="Perfil" class="profile-icon">
               <div class="profile-info">
                 <span class="user-name">Marco</span>
-                <a href="#" class="profile-link">Ver Perfil</a>
+                <a href="../Ajustes/setting.html" class="profile-link">Ver Perfil</a>
               </div>
             </div>
-            <hr />
+            <hr>
             <p>Últimas Actualizaciones</p>
             <p>Ayuda</p>
             <p>Enviar Comentarios</p>
             <p>Política de Privacidad</p>
-            <hr />
+            <hr>
             <a href="../Login/login.html" class="logout-link">Cerrar Sesión</a>
-          </div>          
+          </div>
         </div>
       </div>
     </header>
-<!--Seccion del Cliente-->
+
+    <!-- Seccion Prinpipal -->
     <div class="content">
       <div class="panel">
         <h2>Clientes</h2>
+
+        <!-- Buscador y Boton "Nuevo Cliente" -->
         <div class="client-actions">
-          <!--Busqueda-->
           <div class="search-container">
             <input type="text" id="search-input" placeholder="Buscar por nombre o apellido...">
             <button id="search-btn">Buscar</button>
           </div>
           <button id="add-client-btn" class="add-btn">Nuevo Cliente</button>
         </div>
-        <!--Tabla de Clientes-->
+
+        <!-- Tabla de Clientes -->
         <div class="table-container">
           <table id="clients-table">
             <thead>
@@ -103,12 +108,14 @@
               </tr>
             </thead>
             <tbody>
-              <!-- Por el momento se añade en Java -->
+              <!-- Por el momento se añade en JavaScript -->
             </tbody>
           </table>
+
           <div id="no-results" class="no-results" style="display: none;">
             No se encuentra ningún resultado
           </div>
+
           <div id="recent-searches" class="recent-searches">
             <h3>Búsquedas recientes</h3>
             <div class="search-tags"></div>
@@ -116,39 +123,46 @@
         </div>
       </div>
     </div>
-    <!-- Añadir/editar clientes  -->
+
+    <!-- Añadir / editar clientes -->
     <div id="client-modal" class="modal">
       <div class="modal-content">
         <span class="close-btn">&times;</span>
         <h2 id="modal-title">Nuevo Cliente</h2>
-        <form id="client-form" >
+        <form id="client-form">
           <input type="hidden" id="client-id">
+
           <div class="form-group">
-            <label for="nombre" style="margin-top: 1rem;">Nombre:</label>
+            <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" required>
           </div>
+
           <div class="form-group">
             <label for="cedula">Cédula/ID:</label>
             <input type="text" id="cedula" required>
           </div>
+
           <div class="form-group">
             <label for="telefono">Teléfono:</label>
             <input type="text" id="telefono" required>
           </div>
+
           <div class="form-group">
             <label for="email">Email:</label>
             <input type="email" id="email" required>
           </div>
+
           <div class="form-group">
             <label for="direccion">Dirección:</label>
             <input type="text" id="direccion" required>
           </div>
+
           <button type="submit" class="submit-btn">Guardar</button>
         </form>
       </div>
     </div>
 
-    <!-- Advertencia de eliminar -->
+    <!-- Aviso de Confirmaciar eliminacion -->
     <div id="confirm-modal" class="modal">
       <div class="modal-content confirm-modal">
         <h2>¿Está seguro?</h2>
@@ -158,8 +172,10 @@
           <button id="confirm-no" class="confirm-btn">No</button>
         </div>
       </div>
-   </div>
-  </div>
- <script src="cliente.js"></script>
+    </div>
+
+  </div> 
+
+  <script src="cliente.js"></script>
 </body>
 </html>
